@@ -4,419 +4,632 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SkillSwap.ai | Learn. Share. Grow.</title>
+    <title>SkillSwap.ai — Learn. Teach. Grow.</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="logo">
-        SkillSwap<span>.ai</span>
-    </div>
+    <!-- NAVBAR -->
 
-    <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#how">How It Works</a>
-        <a href="#matches">Find Skills</a>
-        <a href="#dashboard">Dashboard</a>
-        <a href="#subscription">Subscription</a>
-    </div>
+    <nav class="navbar">
 
-    <button class="nav-btn" onclick="openProfile()">
-        My Profile
-    </button>
-</nav>
-
-
-<!-- HERO -->
-<section class="hero" id="home">
-
-    <div class="hero-content">
-
-        <div class="badge">
-            ✨ AI-Powered Peer Learning
+        <div class="logo">
+            <span class="logo-icon">✦</span>
+            SkillSwap<span>.ai</span>
         </div>
 
-        <h1>
-            Turn Your Skills Into
-            <span>Currency.</span>
-        </h1>
-
-        <p>
-            Teach what you know, earn Skill Credits and use them
-            to learn something new from talented people around you.
-        </p>
-
-        <div class="hero-buttons">
-            <button class="primary-btn" onclick="scrollToSkills()">
-                Find a Skill →
-            </button>
-
-            <button class="secondary-btn" onclick="scrollToHow()">
-                How It Works
-            </button>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#how">How it works</a>
+            <a href="#skills">Skills</a>
+            <a href="#matches">Matches</a>
         </div>
 
-        <div class="stats">
-
-            <div>
-                <strong>12K+</strong>
-                <span>Learners</span>
-            </div>
-
-            <div>
-                <strong>850+</strong>
-                <span>Skills</span>
-            </div>
-
-            <div>
-                <strong>25K+</strong>
-                <span>Sessions</span>
-            </div>
-
+        <div class="nav-buttons">
+            <button class="login-btn" onclick="openLogin()">Login</button>
+            <button class="signup-btn" onclick="openSignup()">Get Started</button>
         </div>
 
-    </div>
+    </nav>
 
 
-    <div class="hero-card">
+    <!-- HERO -->
 
-        <div class="ai-icon">AI</div>
+    <section class="hero" id="home">
 
-        <h3>Smart Skill Matching</h3>
+        <div class="hero-content">
 
-        <p>
-            Tell us what you want to learn and our AI finds
-            people who match your goals.
-        </p>
-
-        <div class="mini-match">
-            <div class="avatar">A</div>
-
-            <div>
-                <strong>Arjun</strong>
-                <p>Python Developer</p>
+            <div class="badge">
+                ✨ AI-Powered Skill Exchange
             </div>
 
-            <span>98% Match</span>
-        </div>
+            <h1>
+                Learn a skill.
+                <br>
+                <span>Share a skill.</span>
+                <br>
+                Grow together.
+            </h1>
 
-        <div class="mini-match">
-            <div class="avatar">S</div>
-
-            <div>
-                <strong>Sneha</strong>
-                <p>UI/UX Designer</p>
-            </div>
-
-            <span>95% Match</span>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-
-    <div class="section-heading">
-        <span>HOW IT WORKS</span>
-        <h2>Learn without paying for every course.</h2>
-        <p>Your knowledge becomes your learning currency.</p>
-    </div>
-
-
-    <div class="steps">
-
-        <div class="step-card">
-            <div class="step-number">01</div>
-            <h3>Share Your Skills</h3>
             <p>
-                Add skills you already know and are willing
-                to teach other learners.
+                SkillSwap.ai connects people who can teach what you want
+                to learn with people who want to learn what you know.
             </p>
-        </div>
 
-        <div class="step-card">
-            <div class="step-number">02</div>
-            <h3>Earn Credits</h3>
-            <p>
-                Complete teaching sessions and earn Skill Credits
-                based on your contribution.
-            </p>
-        </div>
+            <div class="hero-buttons">
 
-        <div class="step-card">
-            <div class="step-number">03</div>
-            <h3>Learn Something New</h3>
-            <p>
-                Spend your credits to learn skills from other
-                talented members.
-            </p>
-        </div>
+                <button class="primary-btn" onclick="openSignup()">
+                    Find My Match →
+                </button>
 
-    </div>
+                <button class="secondary-btn" onclick="scrollToHow()">
+                    How it works
+                </button>
 
-</section>
-
-
-<!-- AI MATCHING -->
-<section class="matching" id="matches">
-
-    <div class="section-heading">
-        <span>AI SKILL MATCHING</span>
-        <h2>What do you want to learn?</h2>
-        <p>Search a skill and let SkillSwap.ai find your best mentors.</p>
-    </div>
-
-
-    <div class="search-box">
-
-        <input
-            id="skillInput"
-            type="text"
-            placeholder="Try Python, UI/UX, Video Editing..."
-        >
-
-        <button onclick="findMentors()">
-            ✨ Find AI Matches
-        </button>
-
-    </div>
-
-
-    <p id="searchMessage"></p>
-
-
-    <div class="mentor-grid" id="mentorGrid">
-
-        <!-- Generated using JavaScript -->
-
-    </div>
-
-</section>
-
-
-<!-- DASHBOARD -->
-<section class="dashboard" id="dashboard">
-
-    <div class="section-heading">
-        <span>YOUR DASHBOARD</span>
-        <h2>Learn. Teach. Grow.</h2>
-    </div>
-
-
-    <div class="dashboard-grid">
-
-        <div class="credit-card">
-
-            <p>Available Balance</p>
-
-            <h2>
-                <span id="creditBalance">250</span>
-                <small>Skill Credits</small>
-            </h2>
-
-            <div class="credit-row">
-                <span>Earned</span>
-                <strong>+400</strong>
             </div>
 
-            <div class="credit-row">
-                <span>Spent</span>
-                <strong>-150</strong>
-            </div>
+            <div class="hero-stats">
 
-        </div>
-
-
-        <div class="activity-card">
-
-            <h3>Your Skills</h3>
-
-            <div class="skill-tag-container">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>Photography</span>
-            </div>
-
-            <h3 class="learning-title">
-                Currently Learning
-            </h3>
-
-            <div class="learning-item">
                 <div>
-                    <strong>UI/UX Design</strong>
-                    <p>3 sessions completed</p>
+                    <strong>10K+</strong>
+                    <small>Learners</small>
                 </div>
 
-                <span>60%</span>
-            </div>
+                <div>
+                    <strong>500+</strong>
+                    <small>Skills</small>
+                </div>
 
-            <div class="progress">
-                <div style="width:60%"></div>
+                <div>
+                    <strong>25K+</strong>
+                    <small>Skill Sessions</small>
+                </div>
+
             </div>
 
         </div>
 
-    </div>
 
-</section>
+        <!-- HERO MATCH CARD -->
 
+        <div class="hero-card">
 
-<!-- SUBSCRIPTION -->
-<section class="subscription" id="subscription">
+            <div class="card-header">
+                <span>🤖 AI Match Found</span>
+                <span class="online">● 98% Match</span>
+            </div>
 
-    <div class="section-heading subscription-heading">
-        <span>SUBSCRIPTION PLANS</span>
-        <h2>Free to start, premium to grow.</h2>
-        <p>Choose the plan that fits your learning journey. SkillSwap stays simple, affordable and student-friendly.</p>
-    </div>
+            <div class="profile">
 
-    <div class="pricing-grid">
+                <div class="avatar">AK</div>
 
-        <article class="pricing-card">
-            <div class="plan-icon">✓</div>
-            <span class="plan-eyebrow">FREE VERSION</span>
-            <h3>Free</h3>
-            <p class="plan-copy">Everything you need to begin sharing skills and learning from the community.</p>
+                <div>
+                    <h3>Alex Kumar</h3>
+                    <p>Full Stack Developer</p>
+                </div>
 
-            <ul class="plan-features">
-                <li><span>✓</span> Basic matching</li>
-                <li><span>✓</span> Unlimited sessions</li>
-                <li><span>✓</span> Skill Credits</li>
-                <li><span>✓</span> Community profile</li>
-            </ul>
+            </div>
 
-            <button class="plan-button plan-button-outline" onclick="choosePlan('Free')">Start Free</button>
-        </article>
+            <div class="skill-box">
 
-        <article class="pricing-card pricing-card-featured">
-            <div class="popular-pill">MOST POPULAR</div>
-            <div class="plan-icon">✦</div>
-            <span class="plan-eyebrow">PREMIUM SUBSCRIPTION</span>
-            <div class="plan-price">₹99–₹199 <small>/ annum</small></div>
-            <p class="plan-copy">Unlock smarter matching and career-focused tools for your next step.</p>
+                <div>
+                    <small>You want to learn</small>
+                    <strong>Python</strong>
+                </div>
 
-            <ul class="plan-features">
-                <li><span>✓</span> Unlimited matches</li>
-                <li><span>✓</span> AI career guidance</li>
-                <li><span>✓</span> Certifications</li>
-                <li><span>✓</span> Interview preparation</li>
-            </ul>
+                <div class="arrow">↔</div>
 
-            <button class="plan-button plan-button-primary" onclick="choosePlan('Premium')">Choose Premium</button>
-        </article>
+                <div>
+                    <small>Alex wants to learn</small>
+                    <strong>UI/UX Design</strong>
+                </div>
 
-        <article class="pricing-card">
-            <div class="plan-icon">▦</div>
-            <span class="plan-eyebrow">COLLEGE PARTNERSHIPS</span>
-            <h3 class="institution-title">Annual Institutional Subscription</h3>
-            <p class="plan-copy">A campus-wide SkillSwap experience activated through an institutional partnership.</p>
+            </div>
 
-            <ul class="plan-features">
-                <li><span>✓</span> College-wide access</li>
-                <li><span>✓</span> Premium student features</li>
-                <li><span>✓</span> Institutional dashboard</li>
-                <li><span>✓</span> Campus skill ecosystem</li>
-            </ul>
+            <div class="match-score">
 
-            <button class="plan-button plan-button-outline" onclick="choosePlan('College Partnership')">Partner With Us</button>
-        </article>
+                <div class="score-circle">
+                    98%
+                </div>
 
-    </div>
+                <div>
+                    <strong>Perfect Match</strong>
+                    <p>Skills complement each other.</p>
+                </div>
 
-</section>
+            </div>
 
+            <button class="connect-btn" onclick="showNotification('Connection request sent!')">
+                Connect with Alex
+            </button>
 
-<!-- CTA -->
-<section class="cta">
-
-    <h2>Your next skill might cost ₹0.</h2>
-
-    <p>
-        Share what you know and unlock what you want to learn.
-    </p>
-
-    <button onclick="scrollToSkills()">
-        Start Skill Swapping →
-    </button>
-
-</section>
-
-
-<!-- PROFILE MODAL -->
-<div class="modal" id="profileModal">
-
-    <div class="modal-content">
-
-        <button class="close-btn" onclick="closeProfile()">×</button>
-
-        <div class="profile-avatar">
-            TV
         </div>
 
-        <h2>My Profile</h2>
+    </section>
 
-        <p class="profile-sub">
-            SkillSwap.ai Member
+
+    <!-- HOW IT WORKS -->
+
+    <section class="section" id="how">
+
+        <div class="section-title">
+
+            <span>HOW IT WORKS</span>
+
+            <h2>
+                Knowledge is the new currency.
+            </h2>
+
+            <p>
+                Teach what you know. Earn credits. Use those credits
+                to learn something new.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step-card">
+
+                <div class="step-number">01</div>
+
+                <div class="step-icon">👤</div>
+
+                <h3>Create your profile</h3>
+
+                <p>
+                    Tell SkillSwap what you can teach and what
+                    you want to learn.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">02</div>
+
+                <div class="step-icon">🤖</div>
+
+                <h3>Get an AI match</h3>
+
+                <p>
+                    Our matching system finds people whose skills
+                    complement yours.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">03</div>
+
+                <div class="step-icon">🎓</div>
+
+                <h3>Teach & learn</h3>
+
+                <p>
+                    Teach your skill, earn credits and spend them
+                    learning from others.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section class="skills-section" id="skills">
+
+        <div class="section-title">
+
+            <span>EXPLORE SKILLS</span>
+
+            <h2>What do you want to learn?</h2>
+
+            <p>
+                Discover thousands of skills shared by the community.
+            </p>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            <div class="skill-card" onclick="selectSkill('Python')">
+                <div>🐍</div>
+                <h3>Python</h3>
+                <p>1,240 learners</p>
+            </div>
+
+            <div class="skill-card" onclick="selectSkill('Web Development')">
+                <div>💻</div>
+                <h3>Web Development</h3>
+                <p>980 learners</p>
+            </div>
+
+            <div class="skill-card" onclick="selectSkill('UI/UX Design')">
+                <div>🎨</div>
+                <h3>UI/UX Design</h3>
+                <p>760 learners</p>
+            </div>
+
+            <div class="skill-card" onclick="selectSkill('Data Science')">
+                <div>📊</div>
+                <h3>Data Science</h3>
+                <p>620 learners</p>
+            </div>
+
+            <div class="skill-card" onclick="selectSkill('Public Speaking')">
+                <div>🎤</div>
+                <h3>Public Speaking</h3>
+                <p>450 learners</p>
+            </div>
+
+            <div class="skill-card" onclick="selectSkill('Video Editing')">
+                <div>🎬</div>
+                <h3>Video Editing</h3>
+                <p>390 learners</p>
+            </div>
+
+            <div class="skill-card" onclick="selectSkill('Photography')">
+                <div>📸</div>
+                <h3>Photography</h3>
+                <p>310 learners</p>
+            </div>
+
+            <div class="skill-card" onclick="selectSkill('Digital Marketing')">
+                <div>📈</div>
+                <h3>Digital Marketing</h3>
+                <p>280 learners</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MATCH SECTION -->
+
+    <section class="match-section" id="matches">
+
+        <div class="match-content">
+
+            <span>AI MATCHING</span>
+
+            <h2>
+                Stop searching.
+                <br>
+                Let AI find your match.
+            </h2>
+
+            <p>
+                SkillSwap analyzes the skills you teach and the skills
+                you want to learn to find compatible people.
+            </p>
+
+            <button class="primary-btn" onclick="openSignup()">
+                Find My Matches →
+            </button>
+
+        </div>
+
+
+        <div class="matching-demo">
+
+            <div class="search-line">
+                <span>🔍</span>
+                Searching for compatible skills...
+            </div>
+
+            <div class="match-result">
+
+                <div class="mini-avatar">RS</div>
+
+                <div class="match-info">
+
+                    <strong>Rahul Sharma</strong>
+
+                    <p>
+                        Teaches Python • Wants UI Design
+                    </p>
+
+                </div>
+
+                <div class="percentage">
+                    94%
+                </div>
+
+            </div>
+
+
+            <div class="match-result">
+
+                <div class="mini-avatar">SM</div>
+
+                <div class="match-info">
+
+                    <strong>Sneha Mehta</strong>
+
+                    <p>
+                        Teaches Figma • Wants Python
+                    </p>
+
+                </div>
+
+                <div class="percentage">
+                    91%
+                </div>
+
+            </div>
+
+
+            <div class="match-result">
+
+                <div class="mini-avatar">VK</div>
+
+                <div class="match-info">
+
+                    <strong>Vikram Kumar</strong>
+
+                    <p>
+                        Teaches JavaScript • Wants Python
+                    </p>
+
+                </div>
+
+                <div class="percentage">
+                    87%
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREDIT SYSTEM -->
+
+    <section class="credit-section">
+
+        <div class="section-title">
+
+            <span>SKILLS = CREDITS</span>
+
+            <h2>Teach to earn. Learn to grow.</h2>
+
+        </div>
+
+
+        <div class="credit-container">
+
+            <div class="credit-card">
+
+                <div class="credit-icon">🎓</div>
+
+                <h3>Teach a skill</h3>
+
+                <p>
+                    Complete a learning session with another user.
+                </p>
+
+                <div class="credit-value">
+                    +100 <small>credits</small>
+                </div>
+
+            </div>
+
+
+            <div class="credit-arrow">
+                →
+            </div>
+
+
+            <div class="credit-card">
+
+                <div class="credit-icon">💰</div>
+
+                <h3>Earn credits</h3>
+
+                <p>
+                    Your SkillSwap wallet grows after every session.
+                </p>
+
+                <div class="credit-value">
+                    350 <small>credits</small>
+                </div>
+
+            </div>
+
+
+            <div class="credit-arrow">
+                →
+            </div>
+
+
+            <div class="credit-card">
+
+                <div class="credit-icon">🚀</div>
+
+                <h3>Learn something new</h3>
+
+                <p>
+                    Spend your credits to learn from another person.
+                </p>
+
+                <div class="credit-value">
+                    -350 <small>credits</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <div>
+
+            <h2>
+                Your next skill is
+                <span>one match away.</span>
+            </h2>
+
+            <p>
+                Join SkillSwap and turn what you know into
+                what you want to learn.
+            </p>
+
+            <button class="primary-btn" onclick="openSignup()">
+                Start Swapping Skills →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            ✦ SkillSwap<span>.ai</span>
+        </div>
+
+        <p>
+            Learn a skill. Share a skill. Grow together.
         </p>
 
-        <div class="profile-info">
-            <span>Skill Credits</span>
-            <strong id="modalCredits">250</strong>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#how">How it works</a>
+            <a href="#skills">Skills</a>
+            <a href="#matches">Matches</a>
         </div>
 
-        <div class="profile-info">
-            <span>Trust Score</span>
-            <strong>92%</strong>
+        <div class="copyright">
+            © 2026 SkillSwap.ai. Built for learners.
         </div>
 
-        <div class="profile-info">
-            <span>Sessions</span>
-            <strong>12</strong>
-        </div>
+    </footer>
 
-        <button class="primary-btn profile-button">
-            Edit Profile
-        </button>
+
+    <!-- SIGNUP MODAL -->
+
+    <div class="modal" id="signupModal">
+
+        <div class="modal-box">
+
+            <button class="close" onclick="closeSignup()">×</button>
+
+            <div class="modal-icon">✦</div>
+
+            <h2>Join SkillSwap.ai</h2>
+
+            <p>
+                Create your profile and find your first skill match.
+            </p>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your name"
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email address"
+            >
+
+            <input
+                type="text"
+                id="teachSkill"
+                placeholder="Skill you can teach"
+            >
+
+            <input
+                type="text"
+                id="learnSkill"
+                placeholder="Skill you want to learn"
+            >
+
+            <button
+                class="modal-btn"
+                onclick="createProfile()"
+            >
+                Create My Profile →
+            </button>
+
+        </div>
 
     </div>
 
-</div>
 
+    <!-- LOGIN MODAL -->
 
-<!-- TOAST -->
-<div id="toast"></div>
+    <div class="modal" id="loginModal">
 
+        <div class="modal-box">
 
-<footer>
+            <button class="close" onclick="closeLogin()">×</button>
 
-    <div class="logo">
-        SkillSwap<span>.ai</span>
+            <div class="modal-icon">✦</div>
+
+            <h2>Welcome back</h2>
+
+            <p>
+                Login to continue your SkillSwap journey.
+            </p>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email address"
+            >
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+            >
+
+            <button
+                class="modal-btn"
+                onclick="loginUser()"
+            >
+                Login →
+            </button>
+
+        </div>
+
     </div>
 
-    <p>
-        Learn a Skill. Share a Skill. Grow Together.
-    </p>
 
-    <small>
-        © 2026 SkillSwap.ai • Hackathon Prototype
-    </small>
+    <!-- NOTIFICATION -->
 
-</footer>
+    <div id="notification"></div>
 
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
