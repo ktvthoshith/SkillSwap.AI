@@ -391,3 +391,22 @@ function scrollToHow() {
     });
 
 }
+
+
+// -------------------------
+// SUBSCRIPTION DEMO
+// -------------------------
+
+function choosePlan(plan) {
+    if (plan === "Free") {
+        showToast("Free plan selected — start swapping skills!");
+        return;
+    }
+
+    if (plan === "Premium") {
+        showToast("Premium selected — payment flow can be connected next.");
+        return;
+    }
+
+    showToast("College Partnership selected — partnership enquiry can be connected next.");
+}
