@@ -1,412 +1,321 @@
-// -------------------------
-// SKILLSWAP.AI DEMO DATA
-// -------------------------
-
-const mentors = [
-    {
-        name: "Arjun Mehta",
-        skill: "Python",
-        rating: 4.9,
-        match: 98,
-        cost: 40
-    },
-
-    {
-        name: "Sneha Reddy",
-        skill: "UI/UX Design",
-        rating: 4.8,
-        match: 95,
-        cost: 35
-    },
-
-    {
-        name: "Rahul Sharma",
-        skill: "JavaScript",
-        rating: 4.7,
-        match: 93,
-        cost: 30
-    },
-
-    {
-        name: "Priya Nair",
-        skill: "Video Editing",
-        rating: 4.9,
-        match: 96,
-        cost: 45
-    },
-
-    {
-        name: "Karthik Rao",
-        skill: "Machine Learning",
-        rating: 4.8,
-        match: 94,
-        cost: 50
-    },
-
-    {
-        name: "Ananya Gupta",
-        skill: "Graphic Design",
-        rating: 4.7,
-        match: 91,
-        cost: 30
-    }
-];
+/* =========================
+   SKILLSWAP.AI
+   FRONTEND LOGIC
+========================= */
 
 
-let credits = 250;
+/* =========================
+   MODALS
+========================= */
 
+function openSignup() {
+    document
+        .getElementById("signupModal")
+        .classList.add("active");
+}
 
-// -------------------------
-// INITIAL PAGE
-// -------------------------
+function closeSignup() {
+    document
+        .getElementById("signupModal")
+        .classList.remove("active");
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+function openLogin() {
+    document
+        .getElementById("loginModal")
+        .classList.add("active");
+}
 
-    displayMentors(mentors);
-
-});
-
-
-// -------------------------
-// DISPLAY MENTORS
-// -------------------------
-
-function displayMentors(list) {
-
-    const mentorGrid = document.getElementById("mentorGrid");
-
-    mentorGrid.innerHTML = "";
-
-
-    if (list.length === 0) {
-
-        mentorGrid.innerHTML = `
-            <p style="
-                grid-column:1/-1;
-                text-align:center;
-                color:#8f9bb2;
-            ">
-                No exact mentors found. Try Python, JavaScript,
-                UI/UX, Video Editing or Machine Learning.
-            </p>
-        `;
-
-        return;
-    }
-
-
-    list.forEach((mentor, index) => {
-
-        const initial = mentor.name.charAt(0);
-
-        const card = document.createElement("div");
-
-        card.className = "mentor-card";
-
-        card.innerHTML = `
-
-            <div class="mentor-top">
-
-                <div class="mentor-avatar">
-                    ${initial}
-                </div>
-
-                <div>
-                    <h3>${mentor.name}</h3>
-                    <small>
-                        ⭐ ${mentor.rating} rating
-                    </small>
-                </div>
-
-            </div>
-
-
-            <span class="mentor-skill">
-                ${mentor.skill}
-            </span>
-
-
-            <div class="mentor-info">
-
-                <span>
-                    🤖 ${mentor.match}% AI Match
-                </span>
-
-                <span>
-                    🪙 ${mentor.cost} Credits
-                </span>
-
-            </div>
-
-
-            <button onclick="bookSession(${mentors.indexOf(mentor)})">
-                Book Learning Session
-            </button>
-
-        `;
-
-        mentorGrid.appendChild(card);
-
-    });
-
+function closeLogin() {
+    document
+        .getElementById("loginModal")
+        .classList.remove("active");
 }
 
 
-// -------------------------
-// AI SKILL SEARCH
-// -------------------------
+/* =========================
+   CREATE PROFILE
+========================= */
 
-function findMentors() {
+function createProfile() {
 
-    const input =
-        document.getElementById("skillInput")
-        .value
-        .trim()
-        .toLowerCase();
+    const name =
+        document.getElementById("name").value.trim();
 
+    const email =
+        document.getElementById("email").value.trim();
 
-    const message =
-        document.getElementById("searchMessage");
+    const teach =
+        document.getElementById("teachSkill").value.trim();
 
-
-    if (input === "") {
-
-        message.textContent =
-            "Enter a skill to start AI matching.";
-
-        return;
-    }
+    const learn =
+        document.getElementById("learnSkill").value.trim();
 
 
-    message.textContent =
-        "✨ AI is analysing mentors...";
+    if (!name || !email || !teach || !learn) {
 
-
-    setTimeout(() => {
-
-        const results = mentors.filter(mentor =>
-
-            mentor.skill
-            .toLowerCase()
-            .includes(input)
-
-        );
-
-
-        if (results.length > 0) {
-
-            message.textContent =
-                `${results.length} AI match found for "${input}".`;
-
-            displayMentors(results);
-
-        }
-
-        else {
-
-            message.textContent =
-                `Showing recommended mentors related to "${input}".`;
-
-            displayMentors(
-                [...mentors]
-                .sort((a,b) => b.match - a.match)
-                .slice(0,3)
-            );
-
-        }
-
-    }, 700);
-
-}
-
-
-// -------------------------
-// ENTER KEY SEARCH
-// -------------------------
-
-document
-.getElementById("skillInput")
-.addEventListener("keydown", function(event) {
-
-    if (event.key === "Enter") {
-
-        findMentors();
-
-    }
-
-});
-
-
-// -------------------------
-// BOOK SESSION
-// -------------------------
-
-function bookSession(index) {
-
-    const mentor = mentors[index];
-
-    if (!mentor) {
-        return;
-    }
-
-
-    if (credits < mentor.cost) {
-
-        showToast(
-            "Not enough Skill Credits for this session."
+        showNotification(
+            "Please complete all profile fields."
         );
 
         return;
     }
 
 
-    const confirmed = confirm(
+    const user = {
 
-        `Book a ${mentor.skill} session with ${mentor.name}?\n\n` +
+        name: name,
 
-        `Cost: ${mentor.cost} Skill Credits`
+        email: email,
 
+        teach: teach,
+
+        learn: learn,
+
+        credits: 100
+
+    };
+
+
+    localStorage.setItem(
+        "skillswapUser",
+        JSON.stringify(user)
     );
 
 
-    if (!confirmed) {
-        return;
-    }
+    closeSignup();
 
 
-    credits -= mentor.cost;
-
-    updateCredits();
-
-
-    showToast(
-
-        `Session booked with ${mentor.name}! ` +
-
-        `${mentor.cost} credits used.`
-
+    showNotification(
+        `Welcome ${name}! Your profile was created.`
     );
-
-}
-
-
-// -------------------------
-// UPDATE CREDIT UI
-// -------------------------
-
-function updateCredits() {
-
-    document.getElementById("creditBalance")
-        .textContent = credits;
-
-
-    document.getElementById("modalCredits")
-        .textContent = credits;
-
-}
-
-
-// -------------------------
-// PROFILE
-// -------------------------
-
-function openProfile() {
-
-    document
-    .getElementById("profileModal")
-    .classList.add("show");
-
-}
-
-
-function closeProfile() {
-
-    document
-    .getElementById("profileModal")
-    .classList.remove("show");
-
-}
-
-
-// Close modal by clicking outside
-
-document
-.getElementById("profileModal")
-.addEventListener("click", function(event) {
-
-    if (event.target === this) {
-
-        closeProfile();
-
-    }
-
-});
-
-
-// -------------------------
-// TOAST NOTIFICATION
-// -------------------------
-
-function showToast(message) {
-
-    const toast =
-        document.getElementById("toast");
-
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
 
 
     setTimeout(() => {
 
-        toast.classList.remove("show");
+        generateMatch(
+            teach,
+            learn
+        );
+
+    }, 1500);
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function loginUser() {
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value.trim();
+
+
+    if (!email || !password) {
+
+        showNotification(
+            "Enter your email and password."
+        );
+
+        return;
+    }
+
+
+    const savedUser =
+        JSON.parse(
+            localStorage.getItem("skillswapUser")
+        );
+
+
+    if (
+        savedUser &&
+        savedUser.email === email
+    ) {
+
+        closeLogin();
+
+        showNotification(
+            `Welcome back, ${savedUser.name}!`
+        );
+
+    } else {
+
+        showNotification(
+            "No account found. Please create a profile first."
+        );
+
+    }
+}
+
+
+/* =========================
+   AI MATCH SIMULATION
+========================= */
+
+function generateMatch(
+    teachSkill,
+    learnSkill
+) {
+
+    const names = [
+        "Rahul Sharma",
+        "Sneha Mehta",
+        "Vikram Kumar",
+        "Ananya Rao",
+        "Arjun Patel"
+    ];
+
+
+    const randomName =
+        names[
+            Math.floor(
+                Math.random() * names.length
+            )
+        ];
+
+
+    const score =
+        Math.floor(
+            Math.random() * 10
+        ) + 90;
+
+
+    showNotification(
+        `🤖 AI found ${randomName} — ${score}% match!`
+    );
+}
+
+
+/* =========================
+   SKILL SELECTION
+========================= */
+
+function selectSkill(skill) {
+
+    showNotification(
+        `You selected ${skill}. Finding learners...`
+    );
+
+
+    setTimeout(() => {
+
+        showNotification(
+            `🤖 AI found matches for ${skill}!`
+        );
+
+    }, 1200);
+}
+
+
+/* =========================
+   CONNECTION
+========================= */
+
+function connectWithUser(name) {
+
+    showNotification(
+        `Connection request sent to ${name}!`
+    );
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+function showNotification(message) {
+
+    const notification =
+        document.getElementById("notification");
+
+
+    notification.textContent = message;
+
+
+    notification.classList.add("show");
+
+
+    setTimeout(() => {
+
+        notification.classList.remove("show");
 
     }, 3000);
-
 }
 
 
-// -------------------------
-// SCROLL FUNCTIONS
-// -------------------------
-
-function scrollToSkills() {
-
-    document
-    .getElementById("matches")
-    .scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
+/* =========================
+   SMOOTH SCROLL
+========================= */
 
 function scrollToHow() {
 
     document
-    .getElementById("how")
-    .scrollIntoView({
-        behavior: "smooth"
-    });
-
+        .getElementById("how")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
 }
 
 
-// -------------------------
-// SUBSCRIPTION DEMO
-// -------------------------
+/* =========================
+   CLOSE MODALS
+   WHEN CLICKING OUTSIDE
+========================= */
 
-function choosePlan(plan) {
-    if (plan === "Free") {
-        showToast("Free plan selected — start swapping skills!");
-        return;
+window.addEventListener(
+    "click",
+    function(event) {
+
+        const signup =
+            document.getElementById("signupModal");
+
+        const login =
+            document.getElementById("loginModal");
+
+
+        if (event.target === signup) {
+            closeSignup();
+        }
+
+
+        if (event.target === login) {
+            closeLogin();
+        }
+
     }
+);
 
-    if (plan === "Premium") {
-        showToast("Premium selected — payment flow can be connected next.");
-        return;
+
+/* =========================
+   LOAD SAVED USER
+========================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const savedUser =
+            localStorage.getItem(
+                "skillswapUser"
+            );
+
+
+        if (savedUser) {
+
+            const user =
+                JSON.parse(savedUser);
+
+
+            console.log(
+                "SkillSwap user:",
+                user
+            );
+
+        }
+
     }
-
-    showToast("College Partnership selected — partnership enquiry can be connected next.");
-}
+);
